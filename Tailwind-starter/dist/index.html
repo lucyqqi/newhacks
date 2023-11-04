@@ -70,7 +70,6 @@
       /* Custom code for the demo */
     </style>
   </head>
-
   <body class="gradient leading-relaxed tracking-wide flex flex-col">
     <!--Nav-->
     <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-6">
@@ -1091,42 +1090,67 @@
       </div>
     </footer>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Selector</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container max-w-md mx-auto p-8 bg-white shadow-lg rounded">
+        <h2 class="text-2xl font-semibold mb-5">What clothes do you want to buy?</h2>
+        <input type="text" id="clothesType" placeholder="e.g., Shirt, Trousers, etc." class="border-2 border-gray-300 rounded p-2 w-full mb-5"/>
+
+
+        <button id="showOptions" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer w-full mb-5">
+            Show Options
+        </button>
+
+
+        <div id="options" class="hidden space-y-4">
+            <div class="option-1 border p-4 rounded hover:shadow-md transition duration-300">
+                <p class="option-text">Option 1: Classic Tee</p>
+                <button class="select-option bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded mt-3">Select</button>
+            </div>
+            <div class="option-2 border p-4 rounded hover:shadow-md transition duration-300">
+                <p class="option-text">Option 2: Casual Shirt</p>
+                <button class="select-option bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded mt-3">Select</button>
+            </div>
+        </div>
+    </div>
+
+
     <script>
-      /*Toggle dropdown list*/
-      /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+        // Simple JavaScript to toggle options visibility
+        document.getElementById('showOptions').addEventListener('click', function() {
+            const optionsDiv = document.getElementById('options');
+            const clothingType = document.getElementById('clothesType').value.trim();
 
-      var navMenuDiv = document.getElementById("nav-content");
-      var navMenu = document.getElementById("nav-toggle");
 
-      document.onclick = check;
-      function check(e) {
-        var target = (e && e.target) || (event && event.srcElement);
-
-        //Nav Menu
-        if (!checkParent(target, navMenuDiv)) {
-          // click NOT on the menu
-          if (checkParent(target, navMenu)) {
-            // click on the link
-            if (navMenuDiv.classList.contains("hidden")) {
-              navMenuDiv.classList.remove("hidden");
+            if (clothingType) {
+                document.querySelectorAll('.option-text').forEach(function(p) {
+                    p.textContent = `Option for ${clothingType}`;
+                });
+                optionsDiv.classList.remove('hidden');
             } else {
-              navMenuDiv.classList.add("hidden");
+                alert('Please enter a type of clothing.');
             }
-          } else {
-            // click both outside link and outside menu, hide menu
-            navMenuDiv.classList.add("hidden");
-          }
-        }
-      }
-      function checkParent(t, elm) {
-        while (t.parentNode) {
-          if (t == elm) {
-            return true;
-          }
-          t = t.parentNode;
-        }
-        return false;
-      }
+        });
+
+
+        // Event listener for select buttons
+        document.querySelectorAll('.select-option').forEach(function(button) {
+            button.addEventListener('click', function() {
+                alert('Your selection has been made!');
+                // Here you could add more functionality like updating a shopping cart
+            });
+        });
     </script>
+</body>
+</html>
   </body>
 </html>

@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="output.css">
+    <title>Textarea with Tailwind CSS</title>
+    <!-- Include Tailwind CSS from CDN for quick setup -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1 class="bg-green-300">Hello Tailwind</h1>
-    <div class="flex justify-center 
-    items-center h-screen">
-        <div>
-            <div class="inputDiv">
-                <input class="inputBox"
-                type="text" required>
-                <span>First Name</span>
-            </div>
+<body class="bg-gray-100 p-8">
+
+    <div class="max-w-lg mx-auto">
+        <label for="Message" class="block text-sm font-medium text-gray-700">What are you looking for</label>
+        <div class="mt-1">
+            <textarea id="message" name="message" rows="4"
+                class="shadow-sm mt-1 block w-full sm:text-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Input keywords"></textarea>
         </div>
     </div>
+
 </body>
 </html>

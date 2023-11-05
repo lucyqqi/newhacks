@@ -5,6 +5,13 @@ body {
   animation: gradientAnimation 10s infinite linear;
 }
 
+.highlight {
+  background-color: #f97315; /* Set the highlight color to orange */
+  color: white; /* Set the text color to white */
+  padding: 4px 8px; /* Add padding to the highlighted text for spacing */
+  border-radius: 8px;
+}
+
 
 @keyframes gradientAnimation {
   0% {

@@ -30,3 +30,14 @@ seller_link:
     css: 'span.a-size-small.offer-display-feature-text-message a#sellerProfileTriggerId'
     type: Attribute
     attribute: href
+link_five_star:
+    css: 'a[aria-label="All 5 star reviews"].a-size-base.a-link-normal'
+    type: Attribute
+    attribute: href
+link_one_star:
+    css: 'a[aria-label="All 1 star reviews"].a-size-base.a-link-normal'
+    type: Attribute
+    attribute: href
+best_sellers_rank:
+    css: 'tr th.a-color-secondary.a-size-base.prodDetSectionEntry:contains("Best Sellers Rank") + td span'
+    type: Text

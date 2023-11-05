@@ -1,6 +1,6 @@
 # Submitted to Hack The 6ix 2023
 
-# A Comprehensive Guide on prozon.ai (https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)]([https://github.com/angeladev333/hack-the-6ix](https://github.com/lucyqqi/newhacks))
+# A Comprehensive Guide on prozon.ai
 
 >  Have you ever struggled to choose between products? prozon.ai will make your decision for you, while taking into consideration your preferences, helping you make the best purchasing choice!
 

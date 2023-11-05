@@ -1,14 +1,15 @@
 import json
 import operator
 import openai  
-from decouple import Config
+from decouple import config
 
-# Your OpenAI API key
-api_key = "YOUR_OPENAI_API_KEY"
-
-# Secret token
-config = Config('.env')
+# Access your environment variables
 api_key = config("OPENAI_API_KEY")
+DEBUG = config('DEBUG', default=False, cast=bool)
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+
+
 
 # Function to generate a recommendation explanation paragraph
 def generate_explanation(product, prompt):
@@ -26,15 +27,17 @@ def generate_explanation(product, prompt):
         explanation.append(f"The product's price is {product['price']} which is competitive for the features it offers.")
     else:
         explanation.append("No product price is available.")
+   
 
     # Consider product reviews and number of reviews
-    if product["rating"]:
-        explanation.append(f"The product has a rating of {product['rating']} out of 5.")
+    if product.get("rating"):
+        rating = float(product["rating"])  # Convert the rating to a float
+        explanation.append(f"The product has a rating of {rating} out of 5.")
     else:
         explanation.append("No product rating is available.")
 
-    if product["number_of_reviews"]:
-        explanation.append(f"It has {product['number_of_reviews']} reviews from customers.")
+    if product.get("review_count"):
+        explanation.append(f"It has {product['review_count']} reviews from customers.")
     else:
         explanation.append("The number of reviews for this product is not specified.")
 
@@ -42,8 +45,8 @@ def generate_explanation(product, prompt):
     # Calculate a weighted score based on your criteria and prompt
     score = (
         0.2  # Price (Weight: 0.2)
-        + (0.3 * (product["rating"] / 5) if product["rating"] is not None else 0)  # Average Rating (Weight: 0.3)
-        + (0.25 * product["number_of_reviews"] if product["number_of_reviews"] is not None else 0)  # Number of ratings (Weight: 0.25)
+        + (0.3 * (product.get("rating") / 5) if product.get("rating") is not None else 0)  # Average Rating (Weight: 0.3)
+        + (0.25 * product.get("review_count") if product.get("review_count") is not None else 0)  # Number of ratings (Weight: 0.25)
         + 0.05  # Description (Weight: 0.05)
         + 0.2  # Reviews (Weight: 0.2)
     )
@@ -67,17 +70,17 @@ def rank_products(products, needs, prompt):
         explanation = generate_explanation(product, prompt)
 
         # Calculate a rank score based on the criteria
-        if product["price"]:
+        if product.get("price"):
             rank_score += 0.2
 
-        if product["rating"] is not None:
-            rank_score += 0.3 * (product["rating"] / 5)
+        if product.get("rating") is not None:
+            rank_score += 0.3 * (product.get("rating") / 5)
 
-        if product["number_of_reviews"] is not None:
-            rank_score += 0.25 * product["number_of_reviews"]
+        if product.get("review_count") is not None:
+            rank_score += 0.25 * product.get("review count")
 
         # You can also analyze the product's description and factor that into the rank score
-        description = product["short_description"].lower()
+        description = product.get("short_description").lower()
         if any(keyword in description for keyword in prompt.lower().split()):
             rank_score += 0.05
 

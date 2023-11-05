@@ -1,11 +1,17 @@
 import json
 import operator
+import openai  
+from decouple import Config
 
-# Load the API key
-api_key = "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"
+# Your OpenAI API key
+api_key = "YOUR_OPENAI_API_KEY"
 
-# Function to generate an explanation paragraph
-def generate_explanation(product):
+# Secret token
+config = Config('.env')
+api_key = config("OPENAI_API_KEY")
+
+# Function to generate a recommendation explanation paragraph
+def generate_explanation(product, prompt):
     explanation = []
 
     # Analyze the product's short description
@@ -32,21 +38,52 @@ def generate_explanation(product):
     else:
         explanation.append("The number of reviews for this product is not specified.")
 
+    # Custom logic based on the prompt
+    # Calculate a weighted score based on your criteria and prompt
+    score = (
+        0.2  # Price (Weight: 0.2)
+        + (0.3 * (product["rating"] / 5) if product["rating"] is not None else 0)  # Average Rating (Weight: 0.3)
+        + (0.25 * product["number_of_reviews"] if product["number_of_reviews"] is not None else 0)  # Number of ratings (Weight: 0.25)
+        + 0.05  # Description (Weight: 0.05)
+        + 0.2  # Reviews (Weight: 0.2)
+    )
+
+    # Analyze how well the description matches the prompt
+    if any(keyword in description for keyword in prompt.lower().split()):
+        score += 0.1  # Increase the score for a better description match
+
+    explanation.append(f"Based on the provided criteria and prompt, this laptop is recommended as the best choice. "
+                     f"The weighted score is {score:.2f} out of 1.0, where higher scores indicate a better fit for your needs.")
+
     return explanation
 
-# Function to rank products based on different criteria
-def rank_products(products, needs):
+
+def rank_products(products, needs, prompt):
     ranked_products = []
     for product in products:
         rank_score = 0
 
-        # Generate an explanation for the product
-        explanation = generate_explanation(product)
+        # Generate an explanation for the product based on the prompt
+        explanation = generate_explanation(product, prompt)
 
-        # Calculate a rank score based on your needs or criteria
-        # Here, you can customize the scoring based on your needs
+        # Calculate a rank score based on the criteria
+        if product["price"]:
+            rank_score += 0.2
 
-        # If you find more information or criteria specific to gaming, you can add them here
+        if product["rating"] is not None:
+            rank_score += 0.3 * (product["rating"] / 5)
+
+        if product["number_of_reviews"] is not None:
+            rank_score += 0.25 * product["number_of_reviews"]
+
+        # You can also analyze the product's description and factor that into the rank score
+        description = product["short_description"].lower()
+        if any(keyword in description for keyword in prompt.lower().split()):
+            rank_score += 0.05
+
+        # Check if 'reviews' key exists before accessing it
+        if "reviews" in product:
+            rank_score += 0.2
 
         ranked_products.append((product, rank_score, explanation))
 
@@ -55,26 +92,37 @@ def rank_products(products, needs):
 
     return ranked_products
 
+
+
 # Load data from the JSON lines
 products = []
 with open('output.jsonl', 'r') as file:
     for line in file:
         products.append(json.loads(line))
 
-# Define your needs and criteria
-needs = ["play League of Legends", "highest speed", "highest graphics"]
+while True:
+    # Input a prompt
+    prompt = input("Please enter a prompt (e.g., 'I need a laptop for gaming and high-speed performance.'): ")
 
-# Rank the products based on the criteria
-ranked_products = rank_products(products, needs)
+    # Rank the products based on the criteria and the input prompt
+    ranked_products = rank_products(products, [], prompt)
 
-# Select the best product based on ranking
-best_product, best_rank_score, explanation = ranked_products[0]
+    if ranked_products:
+        # Select the best product based on ranking
+        best_product, best_rank_score, explanation = ranked_products[0]
 
-# Generate the explanation paragraph
-explanation_paragraph = "\n".join(explanation)
+        # Generate the explanation paragraph
+        explanation_paragraph = " ".join(explanation)  # Merge explanation sentences into one paragraph
 
-# Print the recommendation with the explanation
-print("Recommendation:")
-print("Product Title: ", best_product["name"])
-print("Explanation:")
-print(explanation_paragraph)
+        # Print the recommendation with the explanation
+        print("\nRecommendation:")
+        print("Product Title: ", best_product["name"])
+        print("Explanation:")
+        print(explanation_paragraph)
+
+        # Generate a one-paragraph response for OpenAI
+        response = f"Based on your request for {prompt}, the recommended product is '{best_product['name']}' because it meets your criteria. {explanation_paragraph}"
+
+
+    else:
+        print("No products match the given criteria.")

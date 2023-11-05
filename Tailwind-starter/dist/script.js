@@ -1,6 +1,6 @@
 
 // import data from 'http://127.0.0.1:5500/scraper/output.jsonl' assert {type: 'json'}
-fetch("http://127.0.0.1:5500/scraper/output.jsonl")
+fetch("http://127.0.0.1:5500/scraper/output.json")
   .then(response => response.json())
   .then(json => {
 

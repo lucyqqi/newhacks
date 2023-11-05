@@ -1,8 +1,15 @@
 import json
 import operator
 
-# Load the API key
-api_key = "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"
+from decouple import Config
+
+#secret token
+config = Config('.env')
+
+api_key = config("OPENAI_API_KEY")
+
+
+api_key = config("OPENAI_API_KEY")
 
 # Function to generate an explanation paragraph
 def generate_explanation(product):

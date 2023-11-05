@@ -1,4 +1,4 @@
-# Submitted to Hack The 6ix 2023
+# Submitted to New Hacks 2023
 
 # A Comprehensive Guide on prozon.ai
 

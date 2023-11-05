@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="output.css">
+    <link rel="stylesheet" href="output.css">
 </head>
-<body>
-    <nav class="bg-blue-500 p-4 w-full">
-        <ul class="flex justify-center space-x-4">
-            <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
-        </ul>
+<body class="h-14 min-h-screen flex flex-col items-center justify-center">
+    <nav class="bg-orange-500 p-2 h-12 w-full fixed top-0">
+        <div class="flex justify-between items-center">
+            <h1 class="text-white text-lg font-semibold pl-4">prozon.ai</h1>
+            <ul class="flex space-x-4 text-sm pr-4">
+                <li><a href="home.html" class="text-white hover:text-yellow-200">Home</a></li>
+                <li><a href="input-products.html" class="text-white hover:text-yellow-200">Input Products</a></li>
+                <li><a href="chart.html" class="text-white hover:text-yellow-200">Chart</a></li>
+                <li><a href="recommendations.html" class="text-white hover:text-yellow-200">Recommendations</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Main Content Section, hidden initially -->

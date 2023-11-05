@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="output.css"> 
 </head>
 
-<body class="h-14 min-h-screen flex flex-col items-center justify-center">
+<body class="h-14 min-h-screen flex flex-col items-center justify-center overflow-x-auto">
     
     <nav class="p-2 h-12 w-full fixed top-0">
         <div class="flex justify-between items-center">
@@ -32,23 +32,6 @@
         <button id="startButton" class="bg-orange-500 hover:bg-orange-400 text-white py-3 px-6 rounded-full font-semibold transition duration-300" style="z-index: 100; position: relative">
             Start
         </button>
-    </div>
-
-    <!-- Main Content Section, hidden initially -->
-    <div id="mainContent" class="container max-w-md mx-auto p-8 bg-white shadow-lg rounded hidden flex-col items-center">
-        <h2 class="text-3xl font-semibold mb-5 text-violet-600">What clothes do you want to buy?</h2>
-        <input type="text" id="clothesType" placeholder="e.g., Shirt, Trousers, etc." class="border-2 border-pink-300 rounded p-3 w-full mb-5 focus-border-violet-500 focus-ring focus-ring-violet-300"/>
-
-        <button id="showOptions" class="bg-pink-500 hover-bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full mb-5">
-            Show Options
-        </button>
-
-        <div id="options" class="hidden space-y-4">
-            <div class="option-1 border p-4 rounded hover-shadow-md transition duration-300 bg-violet-100">
-                <p class="option-text text-violet-700">Option 1: Classic Tee</p>
-                <button class="select-option bg-blue-200 hover-bg-blue-300 text-white font-bold py-1 px-3 rounded mt-3">Link</button>
-            </div>
-        </div>
     </div>
 
     <img src="images/gradient.png" alt="Home Image" class="fixed bottom-0">

@@ -13,7 +13,6 @@ body {
   border-radius: 8px;
 }
 
-
 @keyframes gradientAnimation {
   0% {
       background-position: 0% 50%;
@@ -24,6 +23,17 @@ body {
   100% {
       background-position: 0% 50%;
   }
+}
+
+/* Add custom CSS to style the container */
+#intermediatePage {
+  max-width: 80%; /* Adjust the max-width to control the container's width */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Adjust the height of the textarea to make it bigger */
+#styleInfo {
+  height: 200px; /* Adjust the height as needed to make the textarea bigger */
 }
 
 

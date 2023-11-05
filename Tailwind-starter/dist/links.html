@@ -29,14 +29,79 @@
     <button id="submitStyle" class="bg-orange-200 hover:bg-orange-200 text-orange-500 font-bold py-2 px-4 rounded-full cursor-pointer w-full">Submit</button>
 </div>
 
+
             
 </div>
 
+
+<div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none"></div>
+
+<style>
+    .circle {
+        border-radius: 50%;
+        position: absolute;
+        bottom: 10px;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        opacity: 0.8;
+    }
+  
+    .orange-circle {
+        background-color: orange;
+        animation-name: move-orange;
+    }
+  
+    .light-grey-circle {
+        background-color: lightgray;
+        animation-name: move-light-grey;
+    }
+  
+    @keyframes move-orange {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+  
+    @keyframes move-light-grey {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
 <script>
 document.getElementById('submitStyle').addEventListener('click', function() {
             document.getElementById('intermediatePage');
             window.location.href = 'table.html';
-        });</script>
+        });
+        
+        function createRandomCircles() {
+            const container = document.getElementById('circles-container');
+
+            for (let i = 0; i < 4; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle', i % 2 === 0 ? 'orange-circle' : 'light-grey-circle');
+                circle.style.width = `${Math.floor(Math.random() * 100) + 20}px`;
+                circle.style.height = circle.style.width;
+                circle.style.left = `${Math.floor(Math.random() * 100)}%`;
+                container.appendChild(circle);
+            }
+        }
+
+        createRandomCircles();</script>
+
+        
 </body>
 </html>
    

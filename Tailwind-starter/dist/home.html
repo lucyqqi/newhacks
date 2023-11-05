@@ -24,56 +24,8 @@
         </button>
     </div>
 
-    <!-- Intermediate Page Section, hidden initially -->
-    <div id="intermediatePage" class="container max-w-lg mx-auto p-8 text-center bg-white shadow-lg rounded hidden">
-        <h2 class="text-3xl font-semibold mb-5 text-violet-600">Tell us about your style!</h2>
-        <textarea id="styleInfo" class="border-2 border-pink-300 rounded p-3 w-full mb-5 focus:border-violet-500 focus:ring focus:ring-violet-300"
-                  placeholder="Describe your clothing style"></textarea>
-        <button id="submitStyle" class="bg-pink-500 hover:bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full">
-            Submit
-        </button>
-    </div>
 
-    <div id="table" class="container max-w-lg mx-auto p-8 text-center bg-white shadow-lg rounded hidden">
 
-        <table class="w-2/3 mx-auto mt-4 border border-black border-collapse">
-            <tr>
-                <th class="border border-black p-2">Product 1</th>
-                <th class="border border-black p-2">Product 2</th>
-                <th class="border border-black p-2">Product 3</th>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Image</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Name</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Description</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Price</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Rating</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-        </table>
-    
-        <button id="choosePreferences" class="bg-pink-500 hover:bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full">
-            Choose your Preferences
-        </button>
-    </div>
-    
 
     <!-- Main Content Section, hidden initially -->
     <div id="mainContent" class="container max-w-md mx-auto p-8 bg-white shadow-lg rounded hidden flex-col items-center">
@@ -95,39 +47,10 @@
     <script>
         // title to intermediate page
         document.getElementById('startButton').addEventListener('click', function() {
-            document.getElementById('titlePage').classList.add('hidden');
-            document.getElementById('intermediatePage').classList.remove('hidden');
+            document.getElementById('titlePage');
+            window.location.href = 'links.html';
         });
 
-        document.getElementById('submitStyle').addEventListener('click', function() {
-            document.getElementById('intermediatePage').classList.add('hidden');
-            document.getElementById('table').classList.remove('hidden');
-        })
-                
-            document.getElementById('choosePreferences').addEventListener('click', function() {
-            document.getElementById('table').classList.add('hidden');
-            document.getElementById('mainContent').classList.remove('hidden');
-        });
-
-        document.getElementById('showOptions').addEventListener('click', function() {
-            const optionsDiv = document.getElementById('options');
-            const clothingType = document.getElementById('clothesType').value.trim();
-
-            if (clothingType) {
-                document.querySelectorAll('.option-text').forEach(function(p) {
-                    p.textContent = `Option for ${clothingType}`;
-                });
-                optionsDiv.classList.remove('hidden');
-            } else {
-                alert('Please enter a type of clothing.');
-            }
-        });
-
-        document.querySelectorAll('.select-option').forEach(function(button) {
-            button.addEventListener('click', function() {
-                alert('Your selection has been made!');
-            });
-        });
     </script>
 
 </body>

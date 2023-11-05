@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="table" class="container max-w-lg mx-auto p-8 text-center bg-white shadow-lg rounded">
+        <table class="w-2/3 mx-auto mt-4 border border-black border-collapse">
+            <tr>
+                <th class="border border-black p-2">Product 1</th>
+                <th class="border border-black p-2">Product 2</th>
+                <th class="border border-black p-2">Product 3</th>
+            </tr>
+            <tr>
+                <td class="border border-black p-2">Image</td>
+                <td class="border border-black p-2"></td>
+                <td class="border border-black p-2"></td>
+            </tr>
+            <tr>
+                <td class="border border-black p-2">Name</td>
+                <td class="border border-black p-2"></td>
+                <td class="border border-black p-2"></td>
+            </tr>
+            <tr>
+                <td class="border border-black p-2">Description</td>
+                <td class="border border-black p-2"></td>
+                <td class="border border-black p-2"></td>
+            </tr>
+            <tr>
+                <td class="border border-black p-2">Price</td>
+                <td class="border border-black p-2"></td>
+                <td class="border border-black p-2"></td>
+            </tr>
+            <tr>
+                <td class="border border-black p-2">Rating</td>
+                <td class="border border-black p-2"></td>
+                <td class="border border-black p-2"></td>
+            </tr>
+        </table>
+    
+        <button id="choosePreferences" class="bg-pink-500 hover:bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full">
+            Choose your Preferences
+        </button>
+    </div>
+</body>
+
+<script>
+
+            document.getElementById('choosePreferences').addEventListener('click', function() {
+            document.getElementById('table');
+            window.location.href = 'preferences.html';
+        });
+        
+</script>
+</html>
+
+

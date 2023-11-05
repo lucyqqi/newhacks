@@ -1,15 +1,9 @@
 import json
 import operator
 import openai  
-from decouple import config
 
 # Access your environment variables
-api_key = config("OPENAI_API_KEY")
-DEBUG = config('DEBUG', default=False, cast=bool)
-EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
-
-
+api_key = "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"
 
 # Function to generate a recommendation explanation paragraph
 def generate_explanation(product, prompt):
@@ -27,26 +21,39 @@ def generate_explanation(product, prompt):
         explanation.append(f"The product's price is {product['price']} which is competitive for the features it offers.")
     else:
         explanation.append("No product price is available.")
-   
 
     # Consider product reviews and number of reviews
-    if product.get("rating"):
-        rating = float(product["rating"])  # Convert the rating to a float
-        explanation.append(f"The product has a rating of {rating} out of 5.")
+    if product["rating"]:
+        explanation.append(f"The product has a rating of {product['rating']} out of 5.")
     else:
         explanation.append("No product rating is available.")
 
+    # first format review_count data
+    review_count = product.get("review_count")
+    parts = review_count.split()
+    review_count = parts[0]
+    review_count = float(review_count.replace(",", ""))
+
+    if review_count:
+        explanation.append(f"It has {review_count} reviews from customers.")
+    else:
+        explanation.append("The number of reviews for this product is not specified.")
+
+    # as well format price data
+    price = float(product.get("price")[1:]) 
+
     if product.get("review_count"):
-        explanation.append(f"It has {product['review_count']} reviews from customers.")
+        explanation.append(f"It has {review_count} reviews from customers.")
     else:
         explanation.append("The number of reviews for this product is not specified.")
 
     # Custom logic based on the prompt
     # Calculate a weighted score based on your criteria and prompt
+
     score = (
-        0.2  # Price (Weight: 0.2)
-        + (0.3 * (product.get("rating") / 5) if product.get("rating") is not None else 0)  # Average Rating (Weight: 0.3)
-        + (0.25 * product.get("review_count") if product.get("review_count") is not None else 0)  # Number of ratings (Weight: 0.25)
+        0.2*price #(Weight: 0.2)
+        + ((0.3 * float(product.get("rating")) / 5) if product.get("rating") is not None else 0)  # Average Rating (Weight: 0.3)
+        + (0.25 * review_count if review_count is not None else 0)  # Number of ratings (Weight: 0.25)
         + 0.05  # Description (Weight: 0.05)
         + 0.2  # Reviews (Weight: 0.2)
     )
@@ -65,22 +72,27 @@ def rank_products(products, needs, prompt):
     ranked_products = []
     for product in products:
         rank_score = 0
+        # first format review_count data
+        review_count = product.get("review_count")
+        parts = review_count.split()
+        review_count = parts[0]
+        review_count = float(review_count.replace(",", ""))
+
 
         # Generate an explanation for the product based on the prompt
         explanation = generate_explanation(product, prompt)
 
         # Calculate a rank score based on the criteria
-        if product.get("price"):
+        if product["price"]:
             rank_score += 0.2
 
-        if product.get("rating") is not None:
-            rank_score += 0.3 * (product.get("rating") / 5)
+        if product["rating"] is not None:
+            rank_score += 0.3 * (float(product["rating"]) / 5)
 
-        if product.get("review_count") is not None:
-            rank_score += 0.25 * product.get("review count")
-
+        if review_count is not None:
+            rank_score += 0.25 * review_count
         # You can also analyze the product's description and factor that into the rank score
-        description = product.get("short_description").lower()
+        description = product["short_description"].lower()
         if any(keyword in description for keyword in prompt.lower().split()):
             rank_score += 0.05
 
@@ -99,7 +111,7 @@ def rank_products(products, needs, prompt):
 
 # Load data from the JSON lines
 products = []
-with open('output.json', 'r') as file:
+with open('output.jsonl', 'r') as file:
     for line in file:
         products.append(json.loads(line))
 

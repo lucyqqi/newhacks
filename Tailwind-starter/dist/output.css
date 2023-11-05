@@ -5,9 +5,6 @@ body {
   animation: gradientAnimation 10s infinite linear;
 }
 
-#startButton:hover {
-  background-color: #FF8800; /* Use a slightly darker version of #FF9900 on hover */
-}
 
 @keyframes gradientAnimation {
   0% {

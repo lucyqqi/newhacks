@@ -10,18 +10,26 @@
 
 <body class="h-14 min-h-screen flex flex-col items-center justify-center">
     
-    <!-- Navigation Bar -->
-    <nav class="bg-orange-500 p-4 w-full fixed top-0">
-        <ul class="flex justify-center space-x-4">
-            <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
-        </ul>
+    <nav class="bg-orange-500 p-2 h-12 w-full fixed top-0">
+        <div class="flex justify-between items-center">
+            <h1 class="text-white text-lg font-semibold pl-4">prozon.ai</h1>
+            <ul class="flex space-x-4 text-sm pr-4">
+                <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
+                <li><a href="input-products.html" class="text-white hover:text-violet-200">Input Products</a></li>
+                <li><a href="chart.html" class="text-white hover:text-violet-200">Chart</a></li>
+                <li><a href="recommendations.html" class="text-white hover:text-violet-200">Recommendations</a></li>
+            </ul>
+        </div>
     </nav>
+    
+    
 
     <!-- Title Page Section -->
     <div id="titlePage" class="container max-w-lg mx-auto p-8 text-center">
-        <h1 class="text-5xl font-bold mb-6 text-white">Welcome to the prozon.ai!</h1>
-        <p class="mb-8 text-white">Help you select the best product option. Click 'Start' to begin.</p>
-        <button id="startButton" style="background-color: #FF9900; color: #FFF; padding: 12px 24px; border-radius: 9999px; font-weight: bold; transition: background-color 0.3s;">
+         <h1 class="text-white text-lg font-semibold pl-4">
+                An <span class="highlight">AI assistant</span> to help you determine your next purchase
+            </h1>
+        <button id="startButton" class="bg-orange-500 hover:bg-yellow-500 text-white py-3 px-6 rounded-full font-semibold transition duration-300">
             Start
         </button>
     </div>
@@ -50,5 +58,7 @@
             window.location.href = 'links.html';
         });
     </script>
+
+    
 </body>
 </html>

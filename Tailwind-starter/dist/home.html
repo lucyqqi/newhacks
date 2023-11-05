@@ -55,12 +55,30 @@
 
     <img src="images/gradient.png" alt="Home Image" class="fixed bottom-0">
 
+    <div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none"></div>
+
     <script>
         // title to intermediate page
         document.getElementById('startButton').addEventListener('click', function() {
             document.getElementById('titlePage');
             window.location.href = 'links.html';
         });
+    
+        function createRandomCircles() {
+            const container = document.getElementById('circles-container');
+
+            for (let i = 0; i < 8; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle', i % 2 === 0 ? 'orange-circle' : 'light-grey-circle');
+                circle.style.width = ${Math.floor(Math.random() * 100) + 20}px;
+                circle.style.height = circle.style.width;
+                circle.style.left = ${Math.floor(Math.random() * 100)}%;
+                container.appendChild(circle);
+            }
+        }
+
+        createRandomCircles();
+                
     </script>
 
     

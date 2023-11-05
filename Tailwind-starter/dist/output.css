@@ -1,3 +1,28 @@
+body {
+  /* Define the gradient animation with a slightly darker blue color and faster animation */
+  background: linear-gradient(135deg, #00205f, #000620, #00205f, #000620);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s infinite linear;
+}
+
+#startButton:hover {
+  background-color: #FF8800; /* Use a slightly darker version of #FF9900 on hover */
+}
+
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+
+      
 /*
 ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
 */

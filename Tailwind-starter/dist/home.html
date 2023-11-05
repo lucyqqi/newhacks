@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="output.css"> <!-- Link to your custom CSS file -->
 </head>
-<body class="h-14 bg-gradient-to-r from-blue-100 to-blue-500 min-h-screen flex flex-col items-center justify-center">
 
+<body class="h-14 min-h-screen flex flex-col items-center justify-center">
+    
     <!-- Navigation Bar -->
-    <nav class="bg-blue-500 p-4 w-full">
+    <nav class="bg-orange-500 p-4 w-full fixed top-0">
         <ul class="flex justify-center space-x-4">
             <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
         </ul>
@@ -17,15 +19,12 @@
 
     <!-- Title Page Section -->
     <div id="titlePage" class="container max-w-lg mx-auto p-8 text-center">
-        <h1 class="text-5xl font-bold mb-6 text-violet-600">Welcome to the Clothing Selector!</h1>
-        <p class="mb-8 text-violet-400">Help you select the best option. Click 'Start' to begin.</p>
-        <button id="startButton" class="bg-blue-200 hover:bg-blue-300 text-violet-600 font-bold py-3 px-6 rounded-full transition duration-300">
+        <h1 class="text-5xl font-bold mb-6 text-white">Welcome to the prozon.ai!</h1>
+        <p class="mb-8 text-white">Help you select the best product option. Click 'Start' to begin.</p>
+        <button id="startButton" style="background-color: #FF9900; color: #FFF; padding: 12px 24px; border-radius: 9999px; font-weight: bold; transition: background-color 0.3s;">
             Start
         </button>
     </div>
-
-
-
 
     <!-- Main Content Section, hidden initially -->
     <div id="mainContent" class="container max-w-md mx-auto p-8 bg-white shadow-lg rounded hidden flex-col items-center">
@@ -50,8 +49,6 @@
             document.getElementById('titlePage');
             window.location.href = 'links.html';
         });
-
     </script>
-
 </body>
 </html>

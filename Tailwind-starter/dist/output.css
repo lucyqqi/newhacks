@@ -25,15 +25,60 @@ body {
   }
 }
 
-/* Add custom CSS to style the container */
-#intermediatePage {
-  max-width: 80%; /* Adjust the max-width to control the container's width */
-  margin: 0 auto; /* Center the container horizontally */
+.circle {
+  border-radius: 50%;
+  position: relative;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  bottom: 10px;
+  opacity: 0.8;
 }
 
-/* Adjust the height of the textarea to make it bigger */
+.orange-circle {
+  background-color: orange;
+  animation-name: move-orange;
+}
+
+.light-grey-circle {
+  background-color: lightgray;
+  animation-name: move-light-grey;
+}
+
+@keyframes move-orange {
+  0% {
+      transform: translateY(-5px);
+  }
+  50% {
+      transform: translateY(-15px);
+  }
+  100% {
+      transform: translateY(-5px);
+  }
+}
+
+@keyframes move-light-grey {
+  0% {
+      transform: translateY(-10px);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+  100% {
+      transform: translateY(-10px);
+  }
+}
+
+Message lucy qi, mol177, allanli
+
+
+/* Add custom CSS to style the container */
+#options #intermediatePage {
+  max-width: 80%; 
+  margin: 0 auto; 
+}
+
 #styleInfo {
-  height: 200px; /* Adjust the height as needed to make the textarea bigger */
+  height: 200px; 
 }
 
 

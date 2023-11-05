@@ -22,29 +22,29 @@
 
     <div id="table" class="container max-w-2xl mx-auto p-4 my-10 text-center bg-orange-50 shadow-lg rounded-lg">
         <h1 class="text-3xl font-semibold mb-5 text-orange-500">Product Comparison</h1>
-        <table class="table-fixed w-full mx-auto mt-4 bg-white rounded-lg overflow-hidden">
+        <table class="w-full mx-auto mt-4 bg-white rounded-lg overflow-hidden">
             <thead class="text-white bg-orange-400">
                 <tr>
-                    <th class="overflow-y-auto border border-white p-3">List</th>
-                    <th class="overflow-y-auto border border-white p-3">Product 1</th>
-                    <th class="overflow-y-auto border border-white p-3">Product 2</th>
+                    <th class="border border-white p-3">List</th>
+                    <th class="border border-white p-3">Product 1</th>
+                    <th class="border border-white p-3">Product 2</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="bg-gray-50 hover:bg-gray-100">
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700">Name</td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="name1"></td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="name2"></td>
+                    <td class="border border-white p-3 text-gray-700">Name</td>
+                    <td class="border border-white p-3 text-gray-700" id="name1"></td>
+                    <td class="border border-white p-3 text-gray-700" id="name2"></td>
                 </tr>
                 <tr class="bg-gray-50 hover:bg-gray-100">
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700">Price</td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="price1"></td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="price2"></td>
+                    <td class="border border-white p-3 text-gray-700">Price</td>
+                    <td class="border border-white p-3 text-gray-700" id="price1"></td>
+                    <td class="border border-white p-3 text-gray-700" id="price2"></td>
                 </tr>
                 <tr class="hover:bg-gray-50">
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700">Rating</td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="rating1"></td>
-                    <td class="overflow-y-auto border border-white p-3 text-gray-700" id="rating2"></td>
+                    <td class="border border-white p-3 text-gray-700">Rating</td>
+                    <td class="border border-white p-3 text-gray-700" id="rating1"></td>
+                    <td class="border border-white p-3 text-gray-700" id="rating2"></td>
                 </tr>
                 
             </tbody>
@@ -56,7 +56,7 @@
     </div>
     
 
-<div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none"></div>
+<div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none" style="z-index: -100"></div>
 
 <style>
     .circle {

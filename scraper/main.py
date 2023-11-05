@@ -99,7 +99,7 @@ def rank_products(products, needs, prompt):
 
 # Load data from the JSON lines
 products = []
-with open('output.jsonl', 'r') as file:
+with open('output.json', 'r') as file:
     for line in file:
         products.append(json.loads(line))
 

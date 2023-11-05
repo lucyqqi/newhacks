@@ -35,12 +35,17 @@ def scrape(url):
     # Pass the HTML of the page and create 
     return e.extract(r.text)
 
-# product_data = []
-with open("urls.txt",'r') as urllist, open('output.jsonl','w') as outfile:
-    for url in urllist.read().splitlines():
-        data = scrape(url) 
+# Initialize a dictionary to store the product data
+product_data = {}
+
+with open("urls.txt", 'r') as urllist:
+    for index, url in enumerate(urllist.read().splitlines(), 1):  # Use enumerate to track the product number
+        data = scrape(url)
         if data:
-            json.dump(data,outfile)
-            outfile.write("\n")
-            # sleep(5)
-    
+            # Create a key based on the product number (e.g., "product1", "product2")
+            product_key = f"product{index}"
+            product_data[product_key] = data
+
+# Write the dictionary to a JSON file
+with open('output.json', 'w') as outfile:
+    json.dump(product_data, outfile, indent=4)

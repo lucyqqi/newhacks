@@ -1,66 +1,61 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <nav class="bg-blue-500 p-4 w-full">
-        <ul class="flex justify-center space-x-4">
-            <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
-        </ul>
-    </nav>
-
-    <div id="table" class="container max-w-lg mx-auto p-8 text-center bg-white shadow-lg rounded">
-        <table class="w-2/3 mx-auto mt-4 border border-black border-collapse">
-            <tr>
-                <th class="border border-black p-2">Product 1</th>
-                <th class="border border-black p-2">Product 2</th>
-                <th class="border border-black p-2">Product 3</th>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Image</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Name</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Description</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Price</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
-            <tr>
-                <td class="border border-black p-2">Rating</td>
-                <td class="border border-black p-2"></td>
-                <td class="border border-black p-2"></td>
-            </tr>
+<body class="bg-gray-100">
+    <div id="table" class="container max-w-2xl mx-auto p-8 my-10 text-center bg-white shadow-lg rounded-lg">
+        <h1 class="text-xl font-semibold text-gray-800 mb-4">Product Comparison</h1>
+        <table class="w-full mx-auto mt-4 bg-white rounded-lg overflow-hidden">
+            <thead class="text-white bg-gray-800">
+                <tr>
+                    <th class="border border-gray-300 p-3">Product 1</th>
+                    <th class="border border-gray-300 p-3">Product 2</th>
+                    <th class="border border-gray-300 p-3">Product 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover:bg-gray-50">
+                    <td class="border border-gray-300 p-3">Image</td>
+                    <td class="border border-gray-300 p-3"></td>
+                    <td class="border border-gray-300 p-3"></td>
+                </tr>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="border border-gray-300 p-3">Name</td>
+                    <td class="border border-gray-300 p-3"></td>
+                    <td class="border border-gray-300 p-3"></td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="border border-gray-300 p-3">Description</td>
+                    <td class="border border-gray-300 p-3"></td>
+                    <td class="border border-gray-300 p-3"></td>
+                </tr>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="border border-gray-300 p-3">Price</td>
+                    <td class="border border-gray-300 p-3"></td>
+                    <td class="border border-gray-300 p-3"></td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="border border-gray-300 p-3">Rating</td>
+                    <td class="border border-gray-300 p-3"></td>
+                    <td class="border border-gray-300 p-3"></td>
+                </tr>
+            </tbody>
         </table>
     
-        <button id="choosePreferences" class="bg-pink-500 hover:bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full">
+        <button id="choosePreferences" class="mt-6 bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded cursor-pointer w-full transition duration-300 ease-in-out">
             Choose your Preferences
         </button>
     </div>
 </body>
 
 <script>
-
-            document.getElementById('choosePreferences').addEventListener('click', function() {
-            document.getElementById('table');
-            window.location.href = 'preferences.html';
-        });
-        
+    document.getElementById('choosePreferences').addEventListener('click', function() {
+        // Assuming 'preferences.html' exists and you want to navigate to it
+        window.location.href = 'preferences.html';
+    });
 </script>
 </html>
-
-

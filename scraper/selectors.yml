@@ -12,7 +12,7 @@ images:
     type: Attribute
     attribute: data-a-dynamic-image
 rating:
-    css: 'span.a-size-base.a-color-base'
+    css: 'span.reviewCountTextLinkedHistogram.noUnderline span.a-size-base.a-color-base'
     type: Text
 review_count:
     css: 'span[data-hook="total-review-count"].a-size-base.a-color-secondary'

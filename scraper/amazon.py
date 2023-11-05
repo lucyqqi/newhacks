@@ -35,17 +35,44 @@ def scrape(url):
     # Pass the HTML of the page and create 
     return e.extract(r.text)
 
-# Initialize a dictionary to store the product data
-product_data = {}
+# Initialize a list to store individual product dictionaries
+product_data_list = []
+
+# Initialize a dictionary to store the product data in nested format
+product_data_nested = {}
 
 with open("urls.txt", 'r') as urllist:
-    for index, url in enumerate(urllist.read().splitlines(), 1):  # Use enumerate to track the product number
+    for index, url in enumerate(urllist.read().splitlines(), 1):
         data = scrape(url)
         if data:
-            # Create a key based on the product number (e.g., "product1", "product2")
-            product_key = f"product{index}"
-            product_data[product_key] = data
+            # Create a dictionary for the product
+            product_dict = {
+                "name": data.get("name", ""),
+                "price": data.get("price", ""),
+                "short_description": data.get("short_description", ""),
+                "images": data.get("images", ""),
+                "rating": data.get("rating", ""),
+                "review_count": data.get("review_count", ""),
+                "product_description": data.get("product_description", ""),
+                "link_to_all_reviews": data.get("link_to_all_reviews", ""),
+                "seller_name": data.get("seller_name", ""),
+                "seller_link": data.get("seller_link", ""),
+                "link_five_star": data.get("link_five_star", ""),
+                "link_one_star": data.get("link_one_star", ""),
+                "best_sellers_rank": data.get("best_sellers_rank", "")
+            }
+            product_data_list.append(product_dict)
 
-# Write the dictionary to a JSON file
-with open('output.json', 'w') as outfile:
-    json.dump(product_data, outfile, indent=4)
+            # Add the data to the nested dictionary using a key like "product1", "product2"
+            product_key = f"product{index}"
+            product_data_nested[product_key] = data
+
+# Write individual product dictionaries to "output.jsonl" file
+with open('output.jsonl', 'w') as outfile:
+    for product_dict in product_data_list:
+        json.dump(product_dict, outfile)
+        outfile.write('\n')  # Add a newline after each JSON object
+
+# Write the nested dictionary to "output.json" file
+with open('output.json', 'w') as outfile_nested:
+    json.dump(product_data_nested, outfile_nested, indent=4)

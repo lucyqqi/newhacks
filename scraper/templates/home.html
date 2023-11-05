@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="output.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css' )}}"> 
 </head>
 
 <body class="h-14 min-h-screen flex flex-col items-center justify-center">
@@ -14,10 +14,10 @@
         <div class="flex justify-between items-center">
             <h1 class="text-white text-lg font-semibold pl-4">prozon.ai</h1>
             <ul class="flex space-x-4 text-sm pr-4">
-                <li><a href="home.html" class="text-white hover:text-yellow-200">Home</a></li>
-                <li><a href="links.html" class="text-white hover:text-yellow-200">Input Products</a></li>
-                <li><a href="table.html" class="text-white hover:text-yellow-200">Chart</a></li>
-                <li><a href="preferences.html" class="text-white hover:text-yellow-200">Recommendations</a></li>
+                <li><a href="{{ url_for('index') }}" class="text-white hover:text-yellow-200">Home</a></li>
+                <li><a href=" {{ url_for('links') }}" class="text-white hover:text-yellow-200">Input Products</a></li>
+                <li><a href="{{ url_for('table') }}" class="text-white hover:text-yellow-200">Chart</a></li>
+                <li><a href="{{ url_for('preferences') }}" class="text-white hover:text-yellow-200">Recommendations</a></li>
             </ul>
         </div>
     </nav>
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <img src="images/gradient.png" alt="Home Image" class="fixed bottom-0">
+    <img src="{{ url_for('static', filename='images/gradient.png') }}" alt="Home Image" class="fixed bottom-0">
 
     <div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none"></div>
 

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css' )}}"> 
+</head>
+<body class="h-14 min-h-screen flex flex-col items-center justify-center">
+    <nav class=" p-2 h-12 w-full fixed top-0">
+        <div class="flex justify-between items-center">
+            <h1 class="text-white text-lg font-semibold pl-4">prozon.ai</h1>
+            <ul class="flex space-x-4 text-sm pr-4">
+                <li><a href="{{ url_for('index') }}" class="text-white hover:text-yellow-200">Home</a></li>
+                <li><a href=" {{ url_for('links') }}" class="text-white hover:text-yellow-200">Input Products</a></li>
+                <li><a href="{{ url_for('table') }}" class="text-white hover:text-yellow-200">Chart</a></li>
+                <li><a href="{{ url_for('preferences') }}" class="text-white hover:text-yellow-200">Recommendations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="table" class="container max-w-2xl mx-auto p-4 my-10 text-center bg-orange-50 shadow-lg rounded-lg">
+        <h1 class="text-3xl font-semibold mb-5 text-orange-500">Product Comparison</h1>
+        <table class="w-full mx-auto mt-4 bg-white rounded-lg overflow-hidden">
+            <thead class="text-white bg-orange-400">
+                <tr>
+                    <th class="border border-white p-3">List</th>
+                    <th class="border border-white p-3">Product 1</th>
+                    <th class="border border-white p-3">Product 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="border border-white p-3 text-gray-700">Name</td>
+
+                    {% for product_name, product_data in api_data.items() %}
+
+                    <td class="border border-white p-3 text-gray-700" id="name1"> {{ product_data['name'] }}</td>
+
+
+                    {% endfor %}
+
+                </tr>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="border border-white p-3 text-gray-700">Price</td>
+                    {% for product_name, product_data in api_data.items() %}
+
+                    <td class="border border-white p-3 text-gray-700" id="name1"> {{ product_data['price'] }}</td>
+
+
+                    {% endfor %}
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="border border-white p-3 text-gray-700">Rating</td>
+                    {% for product_name, product_data in api_data.items() %}
+
+                    <td class="border border-white p-3 text-gray-700" id="name1"> {{ product_data['rating'] }}</td>
+
+
+                    {% endfor %}
+                </tr>
+                
+            </tbody>
+        </table>
+    
+        <a id="choosePreferences" class="block mt-6 bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded-full cursor-pointer w-full transition duration-300 ease-in-out" href="{{ url_for('preferences') }}">
+            Choose your Preferences
+        </a>        
+    </div>
+    
+
+<div id="circles-container" class="fixed bottom-0 w-full flex justify-center justify-between pointer-events-none" style="z-index: -100"></div>
+
+<style>
+    .circle {
+        border-radius: 50%;
+        position: absolute;
+        bottom: 10px;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        opacity: 0.8;
+    }
+  
+    .orange-circle {
+        background-color: orange;
+        animation-name: move-orange;
+    }
+  
+    .light-grey-circle {
+        background-color: lightgray;
+        animation-name: move-light-grey;
+    }
+  
+    @keyframes move-orange {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+  
+    @keyframes move-light-grey {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+</body>
+
+<script>
+    
+
+
+    function createRandomCircles() {
+            const container = document.getElementById('circles-container');
+
+            for (let i = 0; i < 4; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle', i % 2 === 0 ? 'orange-circle' : 'light-grey-circle');
+                circle.style.width = `${Math.floor(Math.random() * 100) + 20}px`;
+                circle.style.height = circle.style.width;
+                circle.style.left = `${Math.floor(Math.random() * 100)}%`;
+                container.appendChild(circle);
+            }
+        }
+
+        createRandomCircles();
+</script>
+</html>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css' )}}"> 
 </head>
 <body class="h-14 min-h-screen flex flex-col items-center justify-center">
     
@@ -17,18 +17,22 @@
         <div class="flex justify-between items-center">
             <h1 class="text-white text-lg font-semibold pl-4">prozon.ai</h1>
             <ul class="flex space-x-4 text-sm pr-4">
-                <li><a href="home.html" class="text-white hover:text-yellow-200">Home</a></li>
-                <li><a href="links.html" class="text-white hover:text-yellow-200">Input Products</a></li>
-                <li><a href="table.html" class="text-white hover:text-yellow-200">Chart</a></li>
-                <li><a href="preferences.html" class="text-white hover:text-yellow-200">Recommendations</a></li>
+                <li><a href="{{ url_for('index') }}" class="text-white hover:text-yellow-200">Home</a></li>
+                <li><a href=" {{ url_for('links') }}" class="text-white hover:text-yellow-200">Input Products</a></li>
+                <li><a href="{{ url_for('table') }}" class="text-white hover:text-yellow-200">Chart</a></li>
+                <li><a href="{{ url_for('preferences') }}" class="text-white hover:text-yellow-200">Recommendations</a></li>
             </ul>
         </div>
     </nav>
    <!-- Intermediate Page Section, hidden initially -->
    <div id="intermediatePage" class="container max-w-xl mx-auto p-8 text-center bg-orange-50 shadow-lg rounded">
     <h2 class="text-3xl font-semibold mb-5 text-orange-500">Put your product links below!</h2>
-    <textarea id="styleInfo" class="border-2 border-orange-500 rounded p-3 w-full h-40 mb-5 focus:border-orange-200 focus:ring focus:ring-orange-300" placeholder="Put each link in a different row"></textarea>
-    <button id="submitStyle" class="bg-orange-200 hover:bg-orange-200 text-orange-500 font-bold py-2 px-4 rounded-full cursor-pointer w-full">Submit</button>
+    <form action="{{ url_for('post_query') }}" method="post">
+        <textarea type="text" name="text" id="" class="border-2 border-orange-500 rounded p-3 w-full h-40 mb-5 focus:border-orange-200 focus:ring focus:ring-orange-300" placeholder="Put each link in a different row"></textarea>
+        <input type="submit" value="Submit" class="bg-orange-200 hover:bg-orange-200 text-orange-500 font-bold py-2 px-4 rounded-full cursor-pointer w-full">
+
+    </form>
+
 </div>
 
 

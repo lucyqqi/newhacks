@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Selector</title>
-        <!-- Tailwind CSS CDN -->
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-pink-100 min-h-screen flex flex-col items-center justify-center">
-    
-        <!-- Navigation Bar -->
-        <nav class="bg-violet-600 p-4 w-full">
-            <ul class="flex justify-center space-x-4">
-                <li><a href="#home" class="text-white hover:text-violet-200">Home</a></li>
-            </ul>
-        </nav>    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-100 min-h-screen flex flex-col items-center justify-center">
 
+    <!-- Navigation Bar -->
+    <nav class="bg-violet-600 p-4 w-full">
+        <ul class="flex justify-center space-x-4">
+            <!-- Additional navigation items can be added here if needed -->
+            <li><a href="home.html" class="text-white hover:text-violet-200">Home</a></li>
+            <!-- Add more navigation items here if necessary -->
+        </ul>
+    </nav>
+
     <!-- Title Page Section -->
     <div id="titlePage" class="container max-w-lg mx-auto p-8 text-center">
         <h1 class="text-5xl font-bold mb-6 text-violet-600">Welcome to the Clothing Selector!</h1>
-        <p class="mb-8 text-violet-400">Find the perfect clothing for your wardrobe. Click 'Start' to begin.</p>
-        <button id="startButton" class="bg-baby-blue-500 hover:bg-baby-blue-700 text-violet-600 font-bold py-3 px-6 rounded-full transition duration-300">
+        <p class="mb-8 text-violet-400">Help you select the best option. Click 'Start' to begin.</p>
+        <button id="startButton" class="bg-blue-200 hover:bg-blue-300 text-violet-600 font-bold py-3 px-6 rounded-full transition duration-300">
             Start
+        </button>
+    </div>
+
+    <!-- Intermediate Page Section, hidden initially -->
+    <div id="intermediatePage" class="container max-w-lg mx-auto p-8 text-center bg-white shadow-lg rounded hidden">
+        <h2 class="text-3xl font-semibold mb-5 text-violet-600">Tell us about your style!</h2>
+        <textarea id="styleInfo" class="border-2 border-pink-300 rounded p-3 w-full mb-5 focus:border-violet-500 focus:ring focus:ring-violet-300"
+                  placeholder="Describe your clothing style"></textarea>
+        <button id="submitStyle" class="bg-pink-500 hover:bg-pink-700 text-violet-600 font-bold py-2 px-4 rounded cursor-pointer w-full">
+            Submit
         </button>
     </div>
 
@@ -41,19 +49,21 @@
         <div id="options" class="hidden space-y-4">
             <div class="option-1 border p-4 rounded hover:shadow-md transition duration-300 bg-violet-100">
                 <p class="option-text text-violet-700">Option 1: Classic Tee</p>
-                <button class="select-option bg-baby-blue-500 hover:bg-baby-blue-700 text-white font-bold py-1 px-3 rounded mt-3">Select</button>
-            </div>
-            <div class="option-2 border p-4 rounded hover:shadow-md transition duration-300 bg-violet-100">
-                <p class="option-text text-violet-700">Option 2: Casual Shirt</p>
-                <button class="select-option bg-baby-blue-500 hover:bg-baby-blue-700 text-white font-bold py-1 px-3 rounded mt-3">Select</button>
+                <button class="select-option bg-blue-200 hover:bg-blue-300 text-white font-bold py-1 px-3 rounded mt-3">Select</button>
             </div>
         </div>
     </div>
 
     <script>
-        // JavaScript to navigate from the title page to the main content
+        // JavaScript to navigate from the title page to the intermediate page
         document.getElementById('startButton').addEventListener('click', function() {
             document.getElementById('titlePage').classList.add('hidden');
+            document.getElementById('intermediatePage').classList.remove('hidden');
+        });
+
+        // JavaScript to navigate from the intermediate page to the main content
+        document.getElementById('submitStyle').addEventListener('click', function() {
+            document.getElementById('intermediatePage').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
         });
 
